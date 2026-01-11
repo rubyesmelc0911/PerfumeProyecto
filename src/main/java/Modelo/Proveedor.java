@@ -126,11 +126,11 @@ public class Proveedor {
         RES.setString(2, tipoServicio);
         RES.setString(3, nombreContacto);
         RES.setString(4, apPaternoContacto);
-        RES.setString(6, apMaternoContacto);
-        RES.setString(5, telefono);
-        RES.setString(6, direccion);
-        RES.setString(7, condicionesPago);
-        RES.setDouble(8, calificacion);
+        RES.setString(5, apMaternoContacto);
+        RES.setString(6, telefono);
+        RES.setString(7, direccion);
+        RES.setString(8, condicionesPago);
+        RES.setDouble(9, calificacion);
         
         RES.executeUpdate(); //cuando hace cambios de actualizacion
     }
@@ -143,7 +143,7 @@ public class Proveedor {
     
     public boolean Buscar(String nombre) throws SQLException {
         Connection Con = dbconnection.getConexion();
-        PreparedStatement SQL = Con.prepareStatement("SELECT * FROM proveedores WHERE Boleta=?");
+        PreparedStatement SQL = Con.prepareStatement("SELECT * FROM proveedores WHERE nombre=?");
         SQL.setString(1, nombre); //el 1 hace referencia al signo de pregunta correspondiente
         ResultSet Res;
         Res = SQL.executeQuery(); 
