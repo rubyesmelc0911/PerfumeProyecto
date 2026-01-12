@@ -72,8 +72,55 @@ public class DetallePedido {
     RES.executeUpdate();
 }
     
+    public void EliminarContiene() throws SQLException {
+    Connection con = dbconnection.getConexion();
+
+    PreparedStatement RES = con.prepareStatement(
+        "DELETE FROM Contiene WHERE Ingredientes_id_ingredientes = ? AND Formulas_id_Formula = ?"
+    );
+    RES.setString(1, ingredientesIdIngredientes);
+    RES.setString(2, formulasIdFormula);
+
+    RES.executeUpdate();
+}
     
     
+    public void MostrarContiene() throws SQLException {
+    Connection con = dbconnection.getConexion();
+
+    PreparedStatement RES = con.prepareStatement(
+        "SELECT * FROM Contiene"
+    );
     
+    RES.executeQuery();
+}
+    
+    
+    public void BuscarContiene() throws SQLException {
+    Connection con = dbconnection.getConexion();
+
+    PreparedStatement RES = con.prepareStatement(
+        "SELECT * FROM Contiene WHERE Ingredientes_id_ingredientes = ? AND Formulas_id_Formula = ?"
+    );
+    RES.setString(1, ingredientesIdIngredientes);
+    RES.setString(2, formulasIdFormula);
+
+    RES.executeQuery();
+}
+    
+    public void ModificarContiene() throws SQLException {
+    Connection con = dbconnection.getConexion();
+
+    PreparedStatement RES = con.prepareStatement(
+        "UPDATE Contiene SET nota = ?, proporcion = ? WHERE Ingredientes_id_ingredientes = ? AND Formulas_id_Formula = ?"
+    );
+    
+    RES.setString(1, nota);
+    RES.setDouble(2, proporcion);
+    RES.setString(3, ingredientesIdIngredientes);
+    RES.setString(4, formulasIdFormula);
+
+    RES.executeUpdate();
+}
     
 }
