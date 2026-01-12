@@ -14,7 +14,6 @@ import db.dbconnection;
 public class Pedido {
     
     private String idPedido;
-    private String idClienteField; // Based on id_Cliente in schema
     private String fechaPedido;
     private String fechaEntrega;
     private String estado;
@@ -22,10 +21,9 @@ public class Pedido {
     private String clientesIdCliente;
     private String facturasIdFacturas;
 
-    public Pedido(String idPedido, String idClienteField, String fechaPedido, String fechaEntrega, 
+    public Pedido(String idPedido, String fechaPedido, String fechaEntrega, 
                   String estado, double total, String clientesIdCliente, String facturasIdFacturas) {
         this.idPedido = idPedido;
-        this.idClienteField = idClienteField;
         this.fechaPedido = fechaPedido;
         this.fechaEntrega = fechaEntrega;
         this.estado = estado;
@@ -42,13 +40,6 @@ public class Pedido {
         this.idPedido = idPedido;
     }
 
-    public String getIdClienteField() {
-        return idClienteField;
-    }
-
-    public void setIdClienteField(String idClienteField) {
-        this.idClienteField = idClienteField;
-    }
 
     public String getFechaPedido() {
         return fechaPedido;
@@ -125,13 +116,13 @@ public void GuardarPedido() throws SQLException {
         "INSERT INTO pedidos VALUES (?,?,?,?,?,?,?)"
     );
 
-    RES.setString(1, idClienteField);
-    RES.setDate(2, Date.valueOf(fechaPedido));
-    RES.setDate(3, Date.valueOf(fechaEntrega));
-    RES.setString(4, estado);
-    RES.setDouble(5, total);
-    RES.setString(6, clientesIdCliente);
-    RES.setString(7, facturasIdFacturas);
+   
+    RES.setDate(1, Date.valueOf(fechaPedido));
+    RES.setDate(2, Date.valueOf(fechaEntrega));
+    RES.setString(3, estado);
+    RES.setDouble(4, total);
+    RES.setString(5, clientesIdCliente);
+    RES.setString(6, facturasIdFacturas);
 
     RES.executeUpdate();
 }
