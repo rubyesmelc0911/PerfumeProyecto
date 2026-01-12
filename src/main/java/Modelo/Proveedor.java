@@ -120,17 +120,18 @@ public class Proveedor {
     public void Guardar(Proveedor p) throws SQLException{
         Connection con = dbconnection.getConexion();
         
-        PreparedStatement RES = con.prepareStatement("insert into proveedores values(?,?,?,?,?,?,?,?)");
+        PreparedStatement RES = con.prepareStatement("insert into proveedores values(?,?,?,?,?,?,?,?,?,?)");
         //organizar bien por columnas y nombre de estas
-        RES.setString(1, nombre);
-        RES.setString(2, tipoServicio);
-        RES.setString(3, nombreContacto);
-        RES.setString(4, apPaternoContacto);
-        RES.setString(5, apMaternoContacto);
-        RES.setString(6, telefono);
-        RES.setString(7, direccion);
-        RES.setString(8, condicionesPago);
-        RES.setDouble(9, calificacion);
+        RES.setString(1, idProveedor);
+        RES.setString(2, nombre);
+        RES.setString(3, tipoServicio);
+        RES.setString(4, nombreContacto);
+        RES.setString(5, apPaternoContacto);
+        RES.setString(6, apMaternoContacto);
+        RES.setString(7, telefono);
+        RES.setString(8, direccion);
+        RES.setString(9, condicionesPago);
+        RES.setDouble(10, calificacion);
         
         RES.executeUpdate(); //cuando hace cambios de actualizacion
     }

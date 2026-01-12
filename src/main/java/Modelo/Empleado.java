@@ -13,7 +13,7 @@ import db.dbconnection;
  * @author rubye
  */
 public class Empleado {
- 
+    private String idEmpleado;
     private String nombre;
     private String apPaterno;
     private String apMaterno;
@@ -24,10 +24,10 @@ public class Empleado {
     private String contrasena;
     private String activo;
 
-    public Empleado( String nombre, String apPaterno, String apMaterno, 
+    public Empleado(String idEmpleado, String nombre, String apPaterno, String apMaterno, 
                     String puesto, String correo, String telefono, String usuario, 
                     String contrasena, String activo) {
-        
+        this.idEmpleado = idEmpleado;
         this.nombre = nombre;
         this.apPaterno = apPaterno;
         this.apMaterno = apMaterno;
@@ -39,6 +39,15 @@ public class Empleado {
         this.activo = activo;
     }
 
+    public String getIdEmpleado() {
+        return idEmpleado;
+    }
+
+    public void setIdEmpleado(String idEmpleado) {
+        this.idEmpleado = idEmpleado;
+    }
+
+    
     public String getNombre() {
         return nombre;
     }
@@ -116,18 +125,19 @@ public void GuardarEmpleado() throws SQLException {
     Connection con = dbconnection.getConexion();
 
     PreparedStatement RES = con.prepareStatement(
-        "INSERT INTO empleados VALUES (?,?,?,?,?,?,?,?,?)"
+        "INSERT INTO empleados VALUES (?,?,?,?,?,?,?,?,?,?)"
     );
     
-    RES.setString(1, nombre);
-    RES.setString(2, apPaterno);
-    RES.setString(3, apMaterno);
-    RES.setString(4, puesto);
-    RES.setString(5, correo);
-    RES.setString(6, telefono);
-    RES.setString(7, usuario);
-    RES.setString(8, contrasena);
-    RES.setString(9, activo);
+    RES.setString(1, idEmpleado);
+    RES.setString(2, nombre);
+    RES.setString(3, apPaterno);
+    RES.setString(4, apMaterno);
+    RES.setString(5, puesto);
+    RES.setString(6, correo);
+    RES.setString(7, telefono);
+    RES.setString(8, usuario);
+    RES.setString(9, contrasena);
+    RES.setString(10, activo);
 
     RES.executeUpdate();
 }

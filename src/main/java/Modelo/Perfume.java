@@ -50,19 +50,19 @@ public class Perfume {
     Connection con = dbconnection.getConexion();
 
     PreparedStatement RES = con.prepareStatement(
-        "INSERT INTO perfumes VALUES (?,?,?,?,?,?,?,?,?,?)"
+        "INSERT INTO perfumes VALUES (?,?,?,?,?,?,?,?,?,?,?)"
     );
-
-    RES.setString(1, nombre);
-    RES.setString(2, familiaOlfativa);
-    RES.setString(3, tipoProducto);
-    RES.setDate(4,Date.valueOf(fechaCreacion));
-    RES.setString(5, perfumista);
-    RES.setString(6, descripcion);
-    RES.setDouble(7, precioVenta);
-    RES.setDouble(8, costoProduccion);
-    RES.setString(9, estado);
-    RES.setString(10, productoTerminadoInventarioId);
+    RES.setString(1, idPerfumes);
+    RES.setString(2, nombre);
+    RES.setString(3, familiaOlfativa);
+    RES.setString(4, tipoProducto);
+    RES.setDate(5,Date.valueOf(fechaCreacion));
+    RES.setString(6, perfumista);
+    RES.setString(7, descripcion);
+    RES.setDouble(8, precioVenta);
+    RES.setDouble(9, costoProduccion);
+    RES.setString(10, estado);
+    RES.setString(11, productoTerminadoInventarioId);
 
     RES.executeUpdate();
 }

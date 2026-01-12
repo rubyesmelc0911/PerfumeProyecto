@@ -13,6 +13,7 @@ import db.dbconnection;
  */
 public class Ingrediente {
     private String nombre;
+    private String idIngrediente;
     private String tipo;
     private String unidadMedida;
     private int stockActual;
@@ -21,10 +22,10 @@ public class Ingrediente {
     private String proveedoresIdProveedor;
     private String materiaPrimaInventarioIdInventario;
 
-    public Ingrediente( String nombre, String tipo, String unidadMedida, 
+    public Ingrediente( String idIngrediente,String nombre, String tipo, String unidadMedida, 
                         int stockActual, double costoUnitario, String nivelReorden, 
                         String proveedoresIdProveedor, String materiaPrimaInventarioIdInventario) {
-      
+        this.idIngrediente = idIngrediente;
         this.nombre = nombre;
         this.tipo = tipo;
         this.unidadMedida = unidadMedida;
@@ -38,6 +39,15 @@ public class Ingrediente {
     public Ingrediente(){
         
     }
+
+    public String getIdIngrediente() {
+        return idIngrediente;
+    }
+
+    public void setIdIngrediente(String idIngrediente) {
+        this.idIngrediente = idIngrediente;
+    }
+    
 
     public String getNombre() {
         return nombre;
@@ -108,17 +118,18 @@ public void GuardarIngrediente() throws SQLException {
     Connection con = dbconnection.getConexion();
 
     PreparedStatement RES = con.prepareStatement(
-        "INSERT INTO ingredientes VALUES (?,?,?,?,?,?,?,?)"
+        "INSERT INTO ingredientes VALUES (?,?,?,?,?,?,?,?,?)"
     );
     
-    RES.setString(1, nombre);
-    RES.setString(2, tipo);
-    RES.setString(3, unidadMedida);
-    RES.setInt(4, stockActual);
-    RES.setDouble(5, costoUnitario);
-    RES.setString(6, nivelReorden);
-    RES.setString(7, proveedoresIdProveedor);
-    RES.setString(8, materiaPrimaInventarioIdInventario);
+    RES.setString(1, idIngrediente);
+    RES.setString(2, nombre);
+    RES.setString(3, tipo);
+    RES.setString(4, unidadMedida);
+    RES.setInt(5, stockActual);
+    RES.setDouble(6, costoUnitario);
+    RES.setString(7, nivelReorden);
+    RES.setString(8, proveedoresIdProveedor);
+    RES.setString(9, materiaPrimaInventarioIdInventario);
 
     RES.executeUpdate();
 }
@@ -133,7 +144,7 @@ public boolean BuscarIngrediente(String nombre) throws SQLException {
     ResultSet Res = SQL.executeQuery();
 
     if (Res.next()) {
-        nombre = Res.getString("nombre");
+        this.nombre = Res.getString("nombre");
         tipo = Res.getString("tipo");
         unidadMedida = Res.getString("unidad_medida");
         stockActual = Res.getInt("stock_actual");

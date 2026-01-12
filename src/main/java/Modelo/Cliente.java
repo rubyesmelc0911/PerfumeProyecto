@@ -124,19 +124,19 @@ public class Cliente {
     Connection con = dbconnection.getConexion();
 
     PreparedStatement RES = con.prepareStatement(
-        "INSERT INTO clientes VALUES (?,?,?,?,?,?,?,?,?)"
+        "INSERT INTO clientes VALUES (?,?,?,?,?,?,?,?,?,?)"
     );
 
-   
-    RES.setString(1, rfc);
-    RES.setString(2, nombre);
-    RES.setString(3, apPaterno);
-    RES.setString(4, apMaterno);
-    RES.setString(5, tipo);
-    RES.setString(6, correo);
-    RES.setString(7, telefono);
-    RES.setString(8, direccionEnvio);
-    RES.setDate(9, Date.valueOf(fechaRegistro));
+   RES.setString(1, idCliente);
+    RES.setString(2, rfc);
+    RES.setString(3, nombre);
+    RES.setString(4, apPaterno);
+    RES.setString(5, apMaterno);
+    RES.setString(6, tipo);
+    RES.setString(7, correo);
+    RES.setString(8, telefono);
+    RES.setString(9, direccionEnvio);
+    RES.setDate(10, Date.valueOf(fechaRegistro));
 
     RES.executeUpdate();
 }
