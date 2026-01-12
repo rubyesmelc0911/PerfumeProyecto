@@ -11,6 +11,7 @@ import db.dbconnection;
  * @author rubye
  */
 public class Factura {
+    private String idFactura;
     private String folio;
     private String fechaEmision;
     private double montoTotal;
@@ -18,14 +19,23 @@ public class Factura {
     private String metodoPago;
     private String estado;
 
-    public Factura(String folio, String fechaEmision, double montoTotal, 
+    public Factura(String idFactura,String folio, String fechaEmision, double montoTotal, 
                    double impuestos, String metodoPago, String estado) {
         this.folio = folio;
+        this.idFactura = idFactura;
         this.fechaEmision = fechaEmision;
         this.montoTotal = montoTotal;
         this.impuestos = impuestos;
         this.metodoPago = metodoPago;
         this.estado = estado;
+    }
+
+    public String getIdFactura() {
+        return idFactura;
+    }
+
+    public void setIdFactura(String idFactura) {
+        this.idFactura = idFactura;
     }
 
    
@@ -81,14 +91,15 @@ public class Factura {
     Connection con = dbconnection.getConexion();
 
     PreparedStatement RES = con.prepareStatement(
-        "INSERT INTO facturas VALUES (?,?,?,?,?,?)"
+        "INSERT INTO facturas VALUES (?,?,?,?,?,?,?)"
     );
-    RES.setString(1, folio);
-    RES.setDate(2, Date.valueOf(fechaEmision));
-    RES.setDouble(3, montoTotal);
-    RES.setDouble(4, impuestos);
-    RES.setString(5, metodoPago);
-    RES.setString(6, estado);
+    RES.setString(1, idFactura);
+    RES.setString(2, folio);
+    RES.setDate(3, Date.valueOf(fechaEmision));
+    RES.setDouble(4, montoTotal);
+    RES.setDouble(5, impuestos);
+    RES.setString(6, metodoPago);
+    RES.setString(7, estado);
 
     RES.executeUpdate();
 }

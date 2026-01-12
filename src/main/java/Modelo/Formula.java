@@ -67,5 +67,99 @@ public class Formula {
     }
     
     
+    //CRUD OPERATIONS
+public void Guardar(Formula f) throws SQLException {
+    Connection con = dbconnection.getConexion();
+
+    PreparedStatement RES = con.prepareStatement(
+        "INSERT INTO formulas VALUES (?,?,?,?,?)"
+    );
+
+    RES.setString(1, idFormula);
+    RES.setString(2, version);
+    RES.setString(3, fechaRegistro);
+    RES.setString(4, observaciones);
+    RES.setString(5, perfumesIdPerfumes);
+
+    RES.executeUpdate();
+}
+public ResultSet Mostrar() throws SQLException {
+    Connection Con = dbconnection.getConexion();
+    PreparedStatement SQL = Con.prepareStatement(
+        "SELECT * FROM formulas"
+    );
+    return SQL.executeQuery();
+}
+public boolean Buscar(String idFormula) throws SQLException {
+    Connection Con = dbconnection.getConexion();
+    PreparedStatement SQL = Con.prepareStatement(
+        "SELECT * FROM formulas WHERE id_Formula = ?"
+    );
+
+    SQL.setString(1, idFormula);
+    ResultSet Res = SQL.executeQuery();
+
+    if (Res.next()) {
+        this.idFormula = Res.getString("id_Formula");
+        version = Res.getString("version");
+        fechaRegistro = Res.getString("fecha_registro");
+        observaciones = Res.getString("observaciones");
+        perfumesIdPerfumes = Res.getString("Perfumes_id_Perfumes");
+        return true;
+    } else {
+        return false;
+    }
+}
+
+public boolean Modificar(String idFormula) throws SQLException {
+    Connection Con = dbconnection.getConexion();
+    PreparedStatement SQL = Con.prepareStatement(
+        "SELECT * FROM formulas WHERE id_Formula = ?"
+    );
+
+    SQL.setString(1, idFormula);
+    ResultSet Res = SQL.executeQuery();
+
+    if (Res.next()) {
+        PreparedStatement updateStatement = Con.prepareStatement(
+            "UPDATE formulas SET version = ?, fecha_registro = ?, observaciones = ?, "
+          + "Perfumes_id_Perfumes = ? WHERE id_Formula = ?"
+        );
+
+        updateStatement.setString(1, version);
+        updateStatement.setString(2, fechaRegistro);
+        updateStatement.setString(3, observaciones);
+        updateStatement.setString(4, perfumesIdPerfumes);
+        updateStatement.setString(5, idFormula);
+
+        updateStatement.executeUpdate();
+        return true;
+    } else {
+        return false;
+    }
+}
+
+public boolean eliminarRegistro(String idFormula) throws SQLException {
+    Connection Con = dbconnection.getConexion();
+    PreparedStatement SQL = Con.prepareStatement(
+        "SELECT * FROM formulas WHERE id_Formula = ?"
+    );
+
+    SQL.setString(1, idFormula);
+    ResultSet Res = SQL.executeQuery();
+
+    if (Res.next()) {
+        PreparedStatement delete = Con.prepareStatement(
+            "DELETE FROM formulas WHERE id_Formula = ?"
+        );
+        delete.setString(1, idFormula);
+        delete.executeUpdate();
+        return true;
+    } else {
+        return false;
+    }
+}
+
+    
     
 }

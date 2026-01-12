@@ -113,16 +113,16 @@ public void GuardarPedido() throws SQLException {
     Connection con = dbconnection.getConexion();
 
     PreparedStatement RES = con.prepareStatement(
-        "INSERT INTO pedidos VALUES (?,?,?,?,?,?,?)"
+        "INSERT INTO pedidos VALUES (?,?,?,?,?,?,?,?)"
     );
 
-   
-    RES.setDate(1, Date.valueOf(fechaPedido));
-    RES.setDate(2, Date.valueOf(fechaEntrega));
-    RES.setString(3, estado);
-    RES.setDouble(4, total);
-    RES.setString(5, clientesIdCliente);
-    RES.setString(6, facturasIdFacturas);
+    RES.setString(1, idPedido);
+    RES.setDate(2, Date.valueOf(fechaPedido));
+    RES.setDate(3, Date.valueOf(fechaEntrega));
+    RES.setString(4, estado);
+    RES.setDouble(5, total);
+    RES.setString(6, clientesIdCliente);
+    RES.setString(7, facturasIdFacturas);
 
     RES.executeUpdate();
 }
